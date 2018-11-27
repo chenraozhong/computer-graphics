@@ -14,6 +14,7 @@ int main()
 	line(0, 0, 100, 100);
 	getchar();
 	closegraph();
+	cout << "chen" << endl;
 	cout << "hello world" << endl;
     return 0;
 }
