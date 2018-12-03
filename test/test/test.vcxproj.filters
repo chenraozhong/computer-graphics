@@ -33,9 +33,6 @@
     <ClInclude Include="画圆算法.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="画椭圆.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

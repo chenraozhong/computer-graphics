@@ -16,13 +16,13 @@ void Circle::draw(int x0,int y0 , int R,COLORREF color) {
 	d = 1 - R;
 	while (x <= y) {
 		putpixel(x+x0, y+y0, color);
-		putpixel(y + y0,x+x0, color);
+		putpixel(y + x0,x+y0, color);
 		putpixel(x+x0, -y+y0, color);
-		putpixel(-y+y0,x + x0, color);
+		putpixel(-y+x0,x + y0, color);
 		putpixel(-x+x0, y+y0, color);
-		putpixel( y + y0,-x+x0, color);
+		putpixel( y + x0,-x+y0, color);
 		putpixel(-x+x0, -y+y0,color);
-		putpixel(-y + y0, -x + x0, color);
+		putpixel(-y + x0, -x + y0, color);
 		if (d < 0) d += 2 * x + 3;
 		else {
 			d += 2 * (x - y) + 5;

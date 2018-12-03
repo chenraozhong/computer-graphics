@@ -149,7 +149,6 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="画圆算法.h" />
-    <ClInclude Include="画椭圆.h" />
     <ClInclude Include="边缘填充算法.h" />
   </ItemGroup>
   <ItemGroup>
