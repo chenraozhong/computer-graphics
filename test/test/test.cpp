@@ -2,120 +2,103 @@
 //
 
 #include "stdafx.h"
-#include "graphics.h"
-#include "stdio.h"
-#include "math.h"
-#include "conio.h"
-#include <iostream>
-
+#include<iostream>
+#include<graphics.h>
 using namespace std;
-void Edge(int a[6][2]);			//定义画边函数
-void PutColor(int x1, int y1, int x2, int y2);		//定义填色函数
-int main()
+
+void DDA(int x1, int y1, int x2, int y2)
 {
-	int  gdriver, gmode;
-	int a[6][2];			//定义顶点
-	printf("请输入六边形的各点坐标\n");
-	printf("请输入第一个点的坐标:");
-	scanf_s("%d,%d", &a[0][0], &a[0][1]);
-	printf("请输入第二个点的坐标:");
-	scanf_s("%d,%d", &a[1][0], &a[1][1]);
-	printf("请输入第三个点的坐标:");
-	scanf_s("%d,%d", &a[2][0], &a[2][1]);
-	printf("请输入第四个点的坐标:");
-	scanf_s("%d,%d", &a[3][0], &a[3][1]);
-	printf("请输入第五个点的坐标:");
-	scanf_s("%d,%d", &a[4][0], &a[4][1]);
-	printf("请输入第六个点的坐标:");
-	scanf_s("%d,%d", &a[5][0], &a[5][1]);
-	gdriver = DETECT;
-	initgraph(&gdriver, &gmode, "");
-	Edge(a);
-	getchar();
-	closegraph();
-	return 0;
-}
-void Edge(int a[6][2])
-{
-	setcolor(RED);		//定义画线颜色
-	line(a[0][0], a[0][1], a[1][0], a[1][1]);		//画线
-	line(a[1][0], a[1][1], a[2][0], a[2][1]);
-	line(a[2][0], a[2][1], a[3][0], a[3][1]);
-	line(a[3][0], a[3][1], a[4][0], a[4][1]);
-	line(a[4][0], a[4][1], a[5][0], a[5][1]);
-	line(a[5][0], a[5][1], a[0][0], a[0][1]);
-
-
-
-	PutColor(a[0][0], a[0][1], a[1][0], a[1][1]);	//填色
-	PutColor(a[1][0], a[1][1], a[2][0], a[2][1]);
-	PutColor(a[2][0], a[2][1], a[3][0], a[3][1]);
-	PutColor(a[3][0], a[3][1], a[4][0], a[4][1]);
-	PutColor(a[4][0], a[4][1], a[5][0], a[5][1]);
-	PutColor(a[5][0], a[5][1], a[0][0], a[0][1]);
-
-}
-void PutColor(int x1, int y1, int x2, int y2)
-{
-
-	int dx, dy, max, i, j, x0;
-	double lasty = 0;
+	int dx, dy, max, i;
 	double th, x, y, xInce, yInce;
 	dx = x2 - x1;
 	dy = y2 - y1;
-	if (abs(dx) >= abs(dy))		//DDA算法
-	{
-		max = abs(dx);
-	}
-	else
-	{
-		max = abs(dy);
-	}
+	max = (abs(dx) > abs(dy)) ? abs(dx) : abs(dy);
 	th = 1.0 / max;
-	xInce = th * dx;			//x增量
-	yInce = th * dy;			//y增量
-
-	if (y1 <= y2)					//考虑到y1和y2的上下关系
+	xInce = th * dx;
+	yInce = th * dy;
+	x = x1;
+	y = y1;
+	for (i = 0; i <= max; i++)
 	{
-		x = x1;
-		x0 = x1;
-		y = y1;
-	}
-	else
-	{
-		x = x2;
-		x0 = x2;
-		y = y2;
-		xInce = -xInce;		 //向上画点的话将增量为负
-		yInce = -yInce;
-	}
-
-
-
-	lasty = y;				//控制变量防止点重叠
-	for (i = 0; i <= max - 1; i++)
-	{
-		x = x0 + (i + 1)*xInce;		//找点
+		putpixel(int(x + 0.5), int(y + 0.5), RED);
+		x += xInce;
 		y += yInce;
-		if (int(lasty) == int(y))		//若两点相同，则跳过本点
-		{
-			continue;
-		}
-		else
-		{
-			lasty = y;
-			for (j = 0; j < 65535; j++)		//向右侧画线
-			{
-				if (getpixel(int(x + 0.5), int(y + 0.5)) == BLACK)	//求补
-					putpixel(int(x + 0.5), int(y + 0.5), RED);
-				else
-					putpixel(int(x + 0.5), int(y + 0.5), BLACK);
-				x = x + 1;		//到下一个点
-			}
-		}
 	}
-
 }
+/*
+当差值过小的时候，会出现刚画的线在下一秒就会被清除的情况，这是一个bug
+*/
+void draw(int *p, int n) {
+	drawpoly(n + 1, p);
+	int xmin, xmax, ymin, ymax;
+	xmin = xmax = p[0];
+	ymin = ymax = p[1];
+	for (int i = 0; i < 2 * n; i += 2)
+	{
+		if (p[i] < xmin) xmin = p[i];
+		if (p[i] > xmax) xmax = p[i];
+		if (p[i + 1] < ymin) ymin = p[i + 1];
+		if (p[i + 1] > ymax) ymax = p[i + 1];
+	}
+	int x0, y0, x1, y1;
+	for (int i = 0; i < 2 * n; i += 2) {
+		x0 = p[i];
+		y0 = p[i + 1];
+		x1 = p[i + 2];
+		y1 = p[i + 3];
+		if (x0 > x1) {
+			int buff = x0;
+			int buff1 = y0;
+			x0 = x1;
+			y0 = y1;
+			x1 = buff;
+			y1 = buff1;
+		}
 
-
+		int dx = x1 - x0;//之前是x0-x1，是存在错误的
+		int dy = y1 - y0;
+		int espl = (abs(dx) > abs(dy)) ? abs(dx) : abs(dy);//espl应该为正值，存在错误
+		float x = x0, y = y0;
+		float xince = ((float)dx / (float)espl);//必须加上float，否则会出错
+		float yince = ((float)dy / (float)espl);
+		int lasty = -100;//用来记录上一个点，以防止重叠造成误擦或误画
+		for (; abs(y - (float)y1) >= 0.5;) {
+			if (lasty !=int( y+0.5)) {
+				float xx = (float)x;
+				int lastx = -100;
+				for (; xx >= xmin&&xx <= xmax; xx += xince) {//xx为int类型，所以加上0.5之后，值是不会改变的
+					if (lastx != int(xx + 0.5)) {
+						if (getpixel(int(xx + 0.5), int(y + 0.5)) == RED) continue;
+						else if (getpixel(int(xx + 0.5), int(y + 0.5)) == BLACK) putpixel(int(xx + 0.5), int(y + 0.5), BLUE);
+						else putpixel(int(xx + 0.5), int(y + 0.5), BLACK);//存在无法填色问题，原因出自drawpoly函数在画直线时误差大
+					}
+					lastx = int(xx + 0.5);
+				}
+				
+			}
+			lasty = int(y+0.5);
+			y += yince;
+			x += xince;
+			//	line(x, y, 200, 100);
+		}
+		for (int i = 0; i < 1000000000; i++);
+	}
+	//line(0, 0, 100, 100);
+}
+int main()
+{
+	int gdrive = DETECT, gmode;
+	initgraph(&gdrive, &gmode, "");
+	setcolor(RED);
+	setbkcolor(WHITE);
+	int p[10] = { 10,260,100,160,300,10,210,100,10,260 };
+	draw(p, 4);
+	for (int i = 0; i < 5; i++)
+		cout << "dfad" << endl;
+	getchar();
+	closegraph();
+	cout << "chen" << endl;
+	cout << "hello world" << endl;
+	return 0;
+}
 
