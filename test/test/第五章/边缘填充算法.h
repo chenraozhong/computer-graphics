@@ -26,7 +26,7 @@ void Fill::test() {
 	initgraph(&gdrive, &gmode, "");
 	setcolor(RED);
 	setbkcolor(WHITE);
-	int p[8] = { 10,100,210,30,150,150,10,100 };
+	int p[8] = { 10,100,150,150,230,110,10,100 };
 	draw(p, 3);
 	getchar();
 	closegraph();

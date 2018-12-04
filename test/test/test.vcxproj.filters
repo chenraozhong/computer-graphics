@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="头文件\第六章">
+      <UniqueIdentifier>{9e72dc0b-5360-4405-a1cf-71420c8b0e24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\第五章">
+      <UniqueIdentifier>{90b6edf6-b858-49fa-ba86-73797a558f37}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -27,11 +33,20 @@
     <ClInclude Include="DDA1.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="边缘填充算法.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
     <ClInclude Include="画圆算法.h">
       <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="第五章\边缘填充算法.h">
+      <Filter>头文件\第五章</Filter>
+    </ClInclude>
+    <ClInclude Include="第五章\DDA1.h">
+      <Filter>头文件\第五章</Filter>
+    </ClInclude>
+    <ClInclude Include="第六章\几何变换.h">
+      <Filter>头文件\第六章</Filter>
+    </ClInclude>
+    <ClInclude Include="第六章\Cohen-Suntherland.h">
+      <Filter>头文件\第六章</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

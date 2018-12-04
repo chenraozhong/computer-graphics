@@ -149,7 +149,10 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="画圆算法.h" />
-    <ClInclude Include="边缘填充算法.h" />
+    <ClInclude Include="第五章\DDA1.h" />
+    <ClInclude Include="第五章\边缘填充算法.h" />
+    <ClInclude Include="第六章\Cohen-Suntherland.h" />
+    <ClInclude Include="第六章\几何变换.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

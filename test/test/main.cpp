@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include<iostream>
-#include "画圆算法.h"
+#include<math.h>
+#include "第六章\几何变换.h"
 using namespace std;
 
 int main()
 {
-	 Circle d;
-	 d.test();
+	Transformation t;
+	t.test();
 	return 0;
 }
