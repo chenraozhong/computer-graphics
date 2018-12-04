@@ -25,25 +25,6 @@ void Cohen::test() {
 
 }
 
-void DDA(int x1,int y1,int x2,int y2) {
-	int dx, dy, max, i;
-	double th, x, y, xInce, yInce;
-	dx = x2 - x1;
-	dy = y2 - y1;
-	max = (abs(dx) > abs(dy)) ? abs(dx) : abs(dy);
-	th = 1.0 / max;
-	xInce = th * dx;
-	yInce = th * dy;
-	x = x1;
-	y = y1;
-	for (i = 0; i <= max; i++)
-	{
-		putpixel(int(x + 0.5), int(y + 0.5), BLACK);
-		x += xInce;
-		y += yInce;
-	}
-}
-
 void Cohen::get_point(int i) {
 	int edge;
 	int xx, yy;
