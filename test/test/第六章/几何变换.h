@@ -11,7 +11,7 @@ public:
 	void test();
 	void test_rocate();
 	void scaling_trans(int a[15][2],float x0,float y0,float size);//进行缩放变换
-	void rocate_trans(int a[15][2], float x0, float y0,float det);//进行旋转变换
+	void rocate_trans(int a[14][2], float x0, float y0,float det);//进行旋转变换
 };
 
 void Transformation::test() {
@@ -83,7 +83,6 @@ void Transformation::rocate_trans(int a[14][2], float x0, float y0,float det) {
 		line(int(aa[i][0]), int(aa[i][1]), int(aa[i + 1][0]), int(aa[i + 1][1]));
 	}
 	line(int(aa[13][0]), int(aa[13][1]), int(aa[0][0]), int(aa[0][1]));
-
 }
 
 void Transformation::scaling_trans(int a[15][2],float x0,float y0,float size) {
@@ -92,13 +91,6 @@ void Transformation::scaling_trans(int a[15][2],float x0,float y0,float size) {
 	float trans3[3][3]= { { size,0,0 },{ 0,size,0 },{0,0,1 } };
 	float trans[3][3];
 	get_trans(trans, trans1, trans2, trans3);
-	/*
-	for (int i = 0; i < 3; i++)
-	{
-		cout << endl;
-		for (int j = 0; j < 3; j++)
-			cout << trans[i][j]<<"   ";
-	}*/
 	float aa[15][2];
 	for (int i = 0; i < 15; i++)
 	{
@@ -118,6 +110,8 @@ void Transformation::scaling_trans(int a[15][2],float x0,float y0,float size) {
 	}
 	line(int(aa[14][0]), int(aa[14][1]), int(aa[0][0]), int(aa[0][1]));
 }
+
+
 
 void Transformation::test_scaling() {
 	int a[15][2] = { { 110,65 },{ 100,70 },{ 80,70 },{ 50,110 },{ 65,70 },{ 45,70 },{ 25,90 },{ 35,65 },{ 25,40 },{ 45,60 },{ 65,60 },{50,20},{80,60},{100,60},{100,60} };
