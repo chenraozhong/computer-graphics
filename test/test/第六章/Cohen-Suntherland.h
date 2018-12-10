@@ -7,7 +7,6 @@ private:
 	int ywt, ywb, xwl, xwr;
 	int x1, y1, x2, y2;
 public:
-	void test_sym();
 	void test_tailor();
 	void tailor(int a[8][2],int x0,int y0,int height,int width);
 	void code(int code1[4],int x, int y);
@@ -17,7 +16,6 @@ public:
 	void get_point(int i);
 	void test();
 	void array_mul(float a[3][3], float b[3][3]);
-	void sym(float x0,float y0,float x1,float y1,float y_standard );//关于一条水平线或垂直线做对称
 };
 
 void Cohen::test() {
@@ -132,6 +130,7 @@ void Cohen::tailor(int a[8][2],int x0,int y0,int height,int width) {
 				if (!And(code1, code2)) {
 					setcolor(BLACK);
 					line(x1, y1, x2, y2);
+					line(x1 + 1, y1, x2 + 1, y2);
 					flag = false;
 				}
 				else {
@@ -183,26 +182,6 @@ void Cohen::test_tailor() {
 	closegraph();
 }
 
-void Cohen::test_sym() {
-	float y_standard;
-	cout << "请输入水平线的y坐标:" << endl;
-	cin >> y_standard;
-	float x0, y0, x1, y1;
-	cout << "请输入直线两端的坐标:";
-	cin >> x0 >> y0;
-	cin >> x1 >> y1;
-	int gdrive =DETECT, gmode;
-	initgraph(&gdrive, &gmode, "");
-	setcolor(GREEN);
-	line((int)x0, (int)y0, (int)x1, (int)y1);
-	setcolor(BLUE);
-	line(0, (int)y_standard, 800, (int)y_standard);
-	sym(x0, y0,x1,y1, y_standard);
-	getchar();
-	getchar();
-	closegraph();
-}
-
 void Cohen::array_mul(float a[3][3], float b[3][3]) {
 	for (int i = 0; i < 3; i++) {
 		int buff = 0;
@@ -219,16 +198,3 @@ void Cohen::array_mul(float a[3][3], float b[3][3]) {
 	}
 }
 
-void Cohen::sym(float x0,float y0,float x1,float y1,float y_standard) {
-	float a[3][3] = { {1,0,0},{0,1,0},{0,-y_standard,1} };
-	float b[3][3] = { {1,0,0},{0,-1,0},{0,0,1} };
-	float c[3][3] = { {1,0,0},{0,1,0},{0,y_standard,1} };
-	array_mul(a, b);
-	array_mul(a, c);
-	x0 = x0*a[0][0] + y0*a[1][0] + 1 * a[2][0];
-	y0= x0*a[0][1] + y0*a[1][1] + 1 * a[2][1];
-	x1 = x1*a[0][0] + y1*a[1][0] + 1 * a[2][0];
-	y1 = x1*a[0][1] + y1*a[1][1] + 1 * a[2][1];
-	setcolor(RED);
-	line((int)x0, (int)y0, (int)x1,(int) y1);
-}
