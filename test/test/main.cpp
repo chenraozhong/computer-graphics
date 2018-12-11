@@ -1,8 +1,8 @@
-#include "stdafx.h"
+ï»¿#include "stdafx.h"
 #include<iostream>
 #include<math.h>
-#include "./µÚÁùÕÂ/Cohen-Suntherland.h"
-#include"./µÚÁùÕÂ/¼¸ºÎ±ä»».h"
+#include "./ç¬¬å…­ç« /Cohen-Suntherland.h"
+#include"./ç¬¬å…­ç« /å‡ ä½•å˜æ¢.h"
 using namespace std;
 int main()
 {
