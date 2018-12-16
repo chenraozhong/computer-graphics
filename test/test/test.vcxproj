@@ -149,6 +149,9 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="画圆算法.h" />
+    <ClInclude Include="第三次实验\两点透视.h" />
+    <ClInclude Include="第三次实验\图形移动.h" />
+    <ClInclude Include="第三次实验\斜二测.h" />
     <ClInclude Include="第五章\DDA1.h" />
     <ClInclude Include="第五章\边缘填充算法.h" />
     <ClInclude Include="第六章\Cohen-Suntherland.h" />
@@ -162,6 +165,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="第三次实验\一点透视.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
