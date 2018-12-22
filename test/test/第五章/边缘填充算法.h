@@ -1,14 +1,42 @@
-// test.cpp : 定义控制台应用程序的入口点。
-//
-
-#include "stdafx.h"
+#pragma once
+#include"stdafx.h"
 #include<iostream>
-#include<graphics.h>
+#include <graphics.h>
 using namespace std;
+
+class Fill {
+public:
+	void draw(int *p, int n);
+	void test();
+};
+
+void Fill::test() {
+	int gdrive = DETECT, gmode;
+	int n;
+	cout << "请输入多边形的顶点个数" << endl;
+	cin >> n;
+	cout << "请输入多边形个顶点的坐标" << endl;
+	int q[20];
+	for (int i = 0; i < 2 * n; i++)
+		cin >> q[i];
+	int jj = q[3];
+	q[2 * n] = q[0];
+	q[2 * n + 1] = q[1];
+	getchar();
+	initgraph(&gdrive, &gmode, "");
+	setcolor(RED);
+	setbkcolor(WHITE);
+	int p[8] = { 10,100,150,150,230,110,10,100 };
+	draw(p, 3);
+	getchar();
+	closegraph();
+	cout << "处理完毕" << endl;
+}
+
 /*
 当差值过小的时候，会出现刚画的线在下一秒就会被清除的情况，这是一个bug
 */
-void draw(int *p, int n) {
+void Fill::draw(int *p, int n) {
 	for (int i = 0; i < 2 * n; i += 2)
 		line(p[i], p[i + 1], p[i + 2], p[i + 3]);
 	int xmin, xmax, ymin, ymax;
@@ -40,19 +68,19 @@ void draw(int *p, int n) {
 		float dy = y1 - y0;
 
 		float espl = (abs(dx) > abs(dy)) ? abs(dx) : abs(dy);
-		float xince = dx /espl;
+		float xince = dx / espl;
 		float yince = dy / espl;
 
-		if (dy/dx<0) {
+		if (dy / dx<0) {
 			float last = y0;
-			while (int(last+0.5) == int(y0+0.5)) {
+			while (int(last + 0.5) == int(y0 + 0.5)) {
 				x0 += xince;
 				y0 += yince;
 			}
 		}
 		else {
 			float last = y1;
-			while (int(last+0.5) == int(y1+0.5)) {
+			while (int(last + 0.5) == int(y1 + 0.5)) {
 				x1 -= xince;
 				y1 -= yince;
 			}
@@ -62,7 +90,7 @@ void draw(int *p, int n) {
 
 		int lasty = -100;//用来记录上一个点，以防止重叠造成误擦或误画
 		for (; abs(y - y1) >= 0.001;) {
-			if (lasty !=int( y+0.5)) {
+			if (lasty != int(y + 0.5)) {
 				float xx = x;
 				int lastx = -100;
 				for (; xx >= xmin&&xx <= xmax; xx += xince) {//xx为int类型，所以加上0.5之后，值是不会改变的
@@ -75,35 +103,10 @@ void draw(int *p, int n) {
 				}
 				for (int i = 0; i < 1000000; i++);
 			}
-			lasty = int(y+0.5);
+			lasty = int(y + 0.5);
 			y += yince;
 			x += xince;
 		}
 		for (int i = 0; i < 100000000; i++);
 	}
 }
-int main()
-{
-	int gdrive = DETECT, gmode;
-	int n;
-	cout << "请输入多边形的顶点个数" << endl;
-	cin >> n;
-	cout << "请输入多边形个顶点的坐标" << endl;
-	int q[20];
-	for (int i = 0; i < 2 * n; i++)
-		cin >> q[i];
-	int jj = q[3];
-	q[2 * n] = q[0];
-	q[2 * n + 1] = q[1];
-	getchar();
-	initgraph(&gdrive, &gmode, "");
-	setcolor(RED);
-	setbkcolor(WHITE);
-	int p[8] = { 10,100,210,30,150,150,10,100 };
-	draw(p, 3);
-	getchar();
-	closegraph();
-	cout << "处理完毕" << endl;
-	return 0;
-}
-
