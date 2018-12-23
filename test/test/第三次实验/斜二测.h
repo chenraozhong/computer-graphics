@@ -5,8 +5,8 @@
 #include<math.h>
 using namespace std;
 
-
-int main1()
+#if 1
+int main()
 {
 	float m, n, l, d;
 	float det = (30.0 / 180.0)*3.14;//½Ç¶È
@@ -73,3 +73,4 @@ int main1()
 	closegraph();
 	return 0;
 }
+#endif

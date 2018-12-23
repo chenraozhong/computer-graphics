@@ -22,6 +22,9 @@
     <Filter Include="头文件\第三次实验">
       <UniqueIdentifier>{12b2902d-788d-4772-918f-45f89d7133c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="头文件\第四次实验">
+      <UniqueIdentifier>{66e57928-246e-4e9d-ac57-9c84c7dd01e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -70,6 +73,9 @@
     </ClCompile>
     <ClCompile Include="第三次实验\一点透视.h">
       <Filter>头文件\第三次实验</Filter>
+    </ClCompile>
+    <ClCompile Include="Bzier.cpp">
+      <Filter>头文件\第四次实验</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

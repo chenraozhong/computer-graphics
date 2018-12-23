@@ -6,9 +6,10 @@
 #include<time.h>
 using namespace std;
 
-
+#if 0
 int main()
 {
-	main1();
+	
 	return 0;
 }
+#endif

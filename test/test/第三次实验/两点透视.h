@@ -4,7 +4,7 @@
 #include<time.h>
 #include<math.h>
 using namespace std;
-
+#if two_points
 
 int main1()
 {
@@ -74,3 +74,4 @@ int main1()
 	closegraph();
 	return 0;
 }
+#endif

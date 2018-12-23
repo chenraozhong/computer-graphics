@@ -2,7 +2,7 @@
 #include<iostream>
 #include<graphics.h>
 using namespace std;
-#if 0
+#if one_point
 int main()
 {
 	float m, n, l, d;
