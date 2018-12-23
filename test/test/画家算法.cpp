@@ -90,7 +90,7 @@ int main()
 	vector<vector<POINT> > ptr = { { { 10,10 },{ 150,150 },{ 200,400 } },
 								   { { 20,20 },{ 200,20 },{ 200,200 } } ,
 								   { { 400,100 },{ 30,150 },{ 50,300 } } ,
-								   { { 400,100 },{ 30,150 },{ 50,300 } } };
+								   { { 40,10 },{ 300,150 },{ 130,30 } } };
 	vector<vector <int> > A = { {0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0} };
 	vector<vector<int> > z = { { 20,30,1 },
 							   { 5,4,2 } ,
@@ -111,7 +111,7 @@ int main()
 	initgraph(&gdrive, &gmode, "");
 	for (int i = 0; i < 4; i++) {
 		POINT point[3];
-		for (int j = 0; j < 4; j++) {
+		for (int j = 0; j <3; j++) {
 			point[j].x = ptr[line[i]][j].x;
 			point[j].y = ptr[line[i]][j].y;
 		}
@@ -125,7 +125,7 @@ int main()
 			int x = ptr[line[i]][pp].x;
 			int y = ptr[line[i]][pp].y;
 			while (true) {
-				outtextxy(x, y, char(zz % 10));
+				outtextxy(x, y, char((zz % 10)+48));
 				zz = zz / 10;
 				if (zz == 0) break;
 				x -= 9;
@@ -135,5 +135,7 @@ int main()
 	}
 	getchar();
 	closegraph();
+	for (int i = 0; i < 4; i++)
+		cout << line[i] << endl;
 	return 0;
 }

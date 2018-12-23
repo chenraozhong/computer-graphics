@@ -4,7 +4,7 @@
 #include<time.h>
 using namespace std;
 
-#if move
+#if 0
 int main()
 {
 		int p[4][2] = { { 20,20 },{ 80,20 },{ 80,80 },{ 20,80 } };

@@ -4,7 +4,7 @@
 #include<time.h>
 #include<math.h>
 using namespace std;
-#if two_points
+#if 0
 
 int main1()
 {

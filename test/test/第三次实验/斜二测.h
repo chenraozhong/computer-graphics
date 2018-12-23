@@ -5,7 +5,7 @@
 #include<math.h>
 using namespace std;
 
-#if 1
+#if 0
 int main()
 {
 	float m, n, l, d;
