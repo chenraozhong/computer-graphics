@@ -55,7 +55,7 @@ int main()
 		line(pointx[i], pointy[i], pointx[i + 1], pointy[i + 1]);
 	}
 
-	for (float i = 0; i <= 1.0; i += 0.01)
+	for (float i = 0; i <= 1.0; i += 0.0001)
 	{
 		float x = 0;
 		float y = 0;

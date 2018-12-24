@@ -6,11 +6,13 @@
 #include<vector>
 using namespace std;
 
+#if 1
 typedef struct node {
 	int x;//边界x
 	int y;//边界y
 }Node;
 
+//计算出每个最大的y值和最大的x值
 Node* getmax(vector<POINT> ptr) {
 	int maxx = ptr[0].x;
 	int maxy = ptr[0].y;
@@ -25,6 +27,7 @@ Node* getmax(vector<POINT> ptr) {
 	return n;
 }
 
+//计算出每个面最小的y值和最小的x值
 Node* getmin(vector<POINT > ptr) {
 	int minx = ptr[0].x;
 	int miny = ptr[0].y;
@@ -38,14 +41,17 @@ Node* getmin(vector<POINT > ptr) {
 	return n;
 }
 
-void get_coe(vector<int> A, vector<POINT > ptr, vector<int> z) {//求出平面方程的系数
+//求出平面方程的系数
+void get_coe(vector<int> &A, vector<POINT > ptr, vector<int> z) {
 	A[0] = (ptr[1].y - ptr[0].y)*(z[2] - z[0]) - (z[1] - z[0])*(ptr[2].y - ptr[0].y);
 	A[1] = (ptr[2].x - ptr[0].x)*(z[1] - z[0]) - (ptr[1].x - ptr[0].x)*(z[2] - z[0]);
 	A[2] = (ptr[1].x - ptr[0].x)*(ptr[2].y - ptr[0].y) - (ptr[2].x - ptr[0].x)*(ptr[1].y - ptr[0].y);
-	A[3] = -ptr[0].x*ptr[1].y*z[2] + ptr[0].x + ptr[2].y*z[1] + ptr[1].x*ptr[0].y*z[2]
+//	A[3] = -ptr[0].x*ptr[1].y*z[2] + ptr[0].x + ptr[2].y*z[1] + ptr[1].x*ptr[0].y*z[2]
 		- ptr[1].x*ptr[2].y*z[0] - ptr[2].x*ptr[0].y*z[1] + ptr[2].x*ptr[1].y*z[0];
+	A[3] = -(A[0] * ptr[0].x + A[1] * ptr[0].y + A[2] * z[0]);
 }
 
+//优先级排序
 void Sort(vector<int > &line, vector<Node*> max, vector<Node*> min, vector<vector <int> > A) {
 	line.push_back(0);
 	for (int i = 1; i < 4; i++) {
@@ -67,7 +73,7 @@ void Sort(vector<int > &line, vector<Node*> max, vector<Node*> min, vector<vecto
 					int x_middle = (x_left + x_right) / 2;
 					int y_middle = (y_up + y_down) / 2;
 					float z_i = (float)(-A[i][0] * x_middle - A[i][1] * y_middle - A[i][3]) / (float)A[i][2];
-					float z_buff = (float)(-A[buff][0] * x_middle - A[buff][1] * y_middle - A[buff][3])/ (float)A[i][2];
+					float z_buff = (float)(-A[buff][0] * x_middle - A[buff][1] * y_middle - A[buff][3])/ (float)A[buff][2];
 					if (z_i > z_buff) {
 						continue;
 					}
@@ -87,14 +93,14 @@ void Sort(vector<int > &line, vector<Node*> max, vector<Node*> min, vector<vecto
 int main()
 {
 	COLORREF color[4] = { RED,YELLOW,BLUE,GREEN };
-	vector<vector<POINT> > ptr = { { { 10,10 },{ 150,150 },{ 200,400 } },
-								   { { 20,20 },{ 200,20 },{ 200,200 } } ,
-								   { { 400,100 },{ 30,150 },{ 50,300 } } ,
-								   { { 40,10 },{ 300,150 },{ 130,30 } } };
+	vector<vector<POINT> > ptr = { { { 100,100 },{ 50,340 },{ 350,250 } },
+								   { { 75,210 },{ 200,75 },{ 550,200 } } ,
+								   { { 150,330 },{ 250,150 },{ 300,350 } } ,
+								   { { 400,50 },{ 500,50 },{ 450,300 } } };
 	vector<vector <int> > A = { {0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0} };
 	vector<vector<int> > z = { { 20,30,1 },
 							   { 5,4,2 } ,
-							   { 80,45,19 } ,
+							   { 100,100,100 } ,
 							   { 14,16,18 } };
 	vector<Node *> min;
 	vector<Node *> max;
@@ -139,3 +145,4 @@ int main()
 		cout << line[i] << endl;
 	return 0;
 }
+#endif
