@@ -80,5 +80,8 @@
     <ClCompile Include="画家算法.cpp">
       <Filter>头文件\第四次实验</Filter>
     </ClCompile>
+    <ClCompile Include="Z_buffer.cpp">
+      <Filter>头文件\第四次实验</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

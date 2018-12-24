@@ -6,7 +6,7 @@
 #include<vector>
 using namespace std;
 
-#if 1
+#if 0
 typedef struct node {
 	int x;//边界x
 	int y;//边界y
@@ -46,8 +46,6 @@ void get_coe(vector<int> &A, vector<POINT > ptr, vector<int> z) {
 	A[0] = (ptr[1].y - ptr[0].y)*(z[2] - z[0]) - (z[1] - z[0])*(ptr[2].y - ptr[0].y);
 	A[1] = (ptr[2].x - ptr[0].x)*(z[1] - z[0]) - (ptr[1].x - ptr[0].x)*(z[2] - z[0]);
 	A[2] = (ptr[1].x - ptr[0].x)*(ptr[2].y - ptr[0].y) - (ptr[2].x - ptr[0].x)*(ptr[1].y - ptr[0].y);
-//	A[3] = -ptr[0].x*ptr[1].y*z[2] + ptr[0].x + ptr[2].y*z[1] + ptr[1].x*ptr[0].y*z[2]
-		- ptr[1].x*ptr[2].y*z[0] - ptr[2].x*ptr[0].y*z[1] + ptr[2].x*ptr[1].y*z[0];
 	A[3] = -(A[0] * ptr[0].x + A[1] * ptr[0].y + A[2] * z[0]);
 }
 
@@ -94,43 +92,6 @@ void Sort(vector<int > &line, vector<Node*> max, vector<Node*> min, vector<vecto
 			line.push_back(wait_line[i]);
 		}
 	}
-
-	/*
-	line.push_back(0);
-	for (int i = 1; i < 4; i++) {
-		int buff = line[0];
-		int flagsize = line.size();
-		for (int j = 0; j < line.size(); j++) {
-			if ((max[buff]->x < min[i]->x) || (max[i]->x < min[buff]->x)) {//如果在x方向上不重叠
-				continue;
-			}
-			else {
-				if ((max[buff]->y < min[i]->y) || (max[i]->y < min[buff]->y)) {
-					continue;
-				}
-				else {
-					int x_left = min[buff]->x > min[i]->x ? min[buff]->x : min[i]->x;
-					int x_right = max[buff]->x < max[i]->x ? max[buff]->x : max[i]->x;
-					int y_up = max[buff]->y < max[i]->y ? max[buff]->y : max[i]->y;
-					int y_down = min[buff]->y > min[i]->y ? min[buff]->y : min[i]->y;
-					int x_middle = (x_left + x_right) / 2;
-					int y_middle = (y_up + y_down) / 2;
-					float z_i = (float)(-A[i][0] * x_middle - A[i][1] * y_middle - A[i][3]) / (float)A[i][2];
-					float z_buff = (float)(-A[buff][0] * x_middle - A[buff][1] * y_middle - A[buff][3])/ (float)A[buff][2];
-					if (z_i > z_buff) {
-						continue;
-					}
-					else {
-						line.insert(line.begin() + j, i);
-						break;
-					}
-				}
-			}
-		}
-		if (flagsize == line.size()) {
-			line.insert(line.end(), i);
-		}
-	}*/
 }
 
 //得到优先级矩阵
@@ -170,14 +131,17 @@ void get_array(vector< vector<int > > &sort_array, vector< vector<int> > A,vecto
 int main()
 {
 	COLORREF color[4] = { RED,YELLOW,BLUE,GREEN };
+	//各面的顶点的x和y坐标
 	vector<vector<POINT> > ptr = { { { 100,100 },{ 50,340 },{ 350,250 } },
 								   { { 75,210 },{ 200,75 },{ 550,200 } } ,
 								   { { 150,330 },{ 250,150 },{ 300,350 } } ,
 								   { { 400,50 },{ 500,50 },{ 450,300 } } };
+	//用来存放面方程的系数
 	vector<vector <int> > A = { {0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0} };
+	//用来存放面顶点的z坐标
 	vector<vector<int> > z = { { 20,30,1 },
-							   { 5,4,2 } ,
-							   { 100,100,100 } ,
+							   { 4,5,200 } ,
+							   { 10,20,1 } ,
 							   { 14,16,18 } };
 	vector<Node *> min;
 	vector<Node *> max;
@@ -198,14 +162,6 @@ int main()
 	vector<vector <int> > sort_array = { {0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0} };
 
 	get_array(sort_array, A,max,min);
-	/*
-	for (int i = 0; i < 4; i++)
-	{
-		cout << endl;
-		for (int j = 0; j < 4; j++)
-			cout << sort_array[i][j] << " ";
-	}
-	*/
 	vector<int > line;
 	Sort(line, max, min, A,sort_array);
 	int gdrive = DETECT, gmode;
@@ -236,8 +192,6 @@ int main()
 	}
 	getchar();
 	closegraph();
-	for (int i = 0; i < 4; i++)
-		cout << line[i] << endl;
 	return 0;
 }
 #endif
