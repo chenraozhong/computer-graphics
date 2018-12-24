@@ -52,7 +52,50 @@ void get_coe(vector<int> &A, vector<POINT > ptr, vector<int> z) {
 }
 
 //优先级排序
-void Sort(vector<int > &line, vector<Node*> max, vector<Node*> min, vector<vector <int> > A) {
+void Sort(vector<int > &line, vector<Node*> max, vector<Node*> min, vector<vector <int> > A,vector<vector <int> >sort_array) {
+	
+	vector<int> wait_line;//当两个面不重叠时，不对这两个面进行优先级排序，将面插入到等待队列当中。待其他面都排序完成之后
+						//再重新进行插入排序。若最后仍不与优先队列中的面重叠，则插入到队列最后，设为优先级最高
+	line.push_back(0);
+	for (int i = 1; i < 4; i++) {
+		int flagsize = line.size();//判断优先队列中是否有新的插入
+		int wait_flag = 1;//判断是否与优先队列中的面存在重叠
+		for (int j = 0; j < line.size(); j++) {
+			if (sort_array[i][line[j]] == -1) {
+				line.insert(line.begin() + j, i);
+				wait_flag = 0;
+				break;
+			}
+			else if (sort_array[i][line[j]] == 1) {
+				wait_flag = 0;
+				continue;
+			}
+		}
+		if (flagsize == line.size()) {
+			if (wait_flag == 1) {
+				wait_line.push_back(i);
+			}
+			else {
+				line.push_back(i);
+			}
+		}
+	}
+
+	//对等待队列中的面再进行排序
+	for (int i = 0; i < wait_line.size(); i++) {
+		int flagsize = line.size();
+		for (int j = 0; j < line.size(); j++) {
+			 if (sort_array[wait_line[i]][line[j]] == -1) {
+				line.insert(line.begin() + j, wait_line[i]);
+				break;
+			}
+		}
+		if (flagsize == line.size()) {
+			line.push_back(wait_line[i]);
+		}
+	}
+
+	/*
 	line.push_back(0);
 	for (int i = 1; i < 4; i++) {
 		int buff = line[0];
@@ -87,6 +130,40 @@ void Sort(vector<int > &line, vector<Node*> max, vector<Node*> min, vector<vecto
 		if (flagsize == line.size()) {
 			line.insert(line.end(), i);
 		}
+	}*/
+}
+
+//得到优先级矩阵
+void get_array(vector< vector<int > > &sort_array, vector< vector<int> > A,vector<Node *> max,vector<Node*> min) {
+	for (int i = 0; i < 3; i++) {
+		for (int j = i+1; j < 4; j++) {
+			if ((max[i]->x < min[j]->x) || (max[j]->x < min[i]->x)) {
+				continue;
+			}
+			else {
+				if ((max[i]->y < min[j]->y) || max[j]->y < min[i]->y) {
+					continue;
+				}
+				else {
+					int x_left = min[j]->x > min[i]->x ? min[j]->x : min[i]->x;
+					int x_right = max[j]->x < max[i]->x ? max[j]->x : max[i]->x;
+					int y_up = max[j]->y < max[i]->y ? max[j]->y : max[i]->y;
+					int y_down = min[j]->y > min[i]->y ? min[j]->y : min[i]->y;
+					int x_middle = (x_left + x_right) / 2;
+					int y_middle = (y_up + y_down) / 2;
+					float z_i = (float)(-A[i][0] * x_middle - A[i][1] * y_middle - A[i][3]) / (float)A[i][2];
+					float z_j= (float)(-A[j][0] * x_middle - A[j][1] * y_middle - A[j][3]) / (float)A[j][2];
+					if (z_i > z_j) {
+						sort_array[i][j] = 1;
+						sort_array[j][i] = -1;
+					}
+					else {
+						sort_array[i][j] = -1;
+						sort_array[j][i] = 1;
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -110,9 +187,27 @@ int main()
 		max.push_back(getmax(ptr[i]));
 		min.push_back(getmin(ptr[i]));
 	}
-	vector<int > line;
-	Sort(line, max, min, A);
 
+	/*
+	优先级矩阵，用来存储各个面之间优先级大小的关系。
+	例如：A[0][1]=0:表示第1个面和第2个面不重叠
+		  A[0][1]=1:表示第1个面的优先级大于第2个面
+		  A[0][1]=-1:表示第1个面的优先级小于第2个面
+	*/
+
+	vector<vector <int> > sort_array = { {0,0,0,0},{0,0,0,0},{0,0,0,0},{0,0,0,0} };
+
+	get_array(sort_array, A,max,min);
+	/*
+	for (int i = 0; i < 4; i++)
+	{
+		cout << endl;
+		for (int j = 0; j < 4; j++)
+			cout << sort_array[i][j] << " ";
+	}
+	*/
+	vector<int > line;
+	Sort(line, max, min, A,sort_array);
 	int gdrive = DETECT, gmode;
 	initgraph(&gdrive, &gmode, "");
 	for (int i = 0; i < 4; i++) {
