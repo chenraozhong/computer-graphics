@@ -34,7 +34,7 @@ int main()
 			line(p[i][0], p[i][1], p[i + 1][0], p[i + 1][1]);
 		}
 		line(p[3][0], p[3][1], p[0][0], p[0][1]);
-		getimage(&w, 20, 20, 70, 70);
+		getimage(&w, 20, 20, 100, 100);
 		setcolor(GREEN);
 		for (int i = 0; i < 2; i++) {
 			line(a[i][0] + n, a[i][1], a[i + 1][0] + n, a[i + 1][1]);
@@ -54,7 +54,7 @@ int main()
 					outtextxy(200 + 10 * i, 200, *(p + i));
 				break;
 			}
-			putimage(x_buff, 20, &w, 0);
+			putimage(x_buff, 20, &w,0);
 			x_buff += 20;
 			putimage(x_buff, 20, &w);
 			Sleep(speed);

@@ -2,6 +2,7 @@
 #include<iostream>
 using namespace std;
 
+#if 1
 class Cohen {
 private:
 	int ywt, ywb, xwl, xwr;
@@ -197,4 +198,11 @@ void Cohen::array_mul(float a[3][3], float b[3][3]) {
 			a[i][p] = sum[p];
 	}
 }
+
+int main() {
+	Cohen c;
+	c.test();
+	return 0;
+}
+#endif 
 

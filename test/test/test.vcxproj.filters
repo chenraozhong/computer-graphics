@@ -13,17 +13,20 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="头文件\第六章">
-      <UniqueIdentifier>{9e72dc0b-5360-4405-a1cf-71420c8b0e24}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="头文件\第五章">
-      <UniqueIdentifier>{90b6edf6-b858-49fa-ba86-73797a558f37}</UniqueIdentifier>
-    </Filter>
     <Filter Include="头文件\第三次实验">
       <UniqueIdentifier>{12b2902d-788d-4772-918f-45f89d7133c6}</UniqueIdentifier>
     </Filter>
     <Filter Include="头文件\第四次实验">
       <UniqueIdentifier>{66e57928-246e-4e9d-ac57-9c84c7dd01e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\最后一次实验">
+      <UniqueIdentifier>{564b216c-753b-43a8-9c35-404236db58ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\第一次实验">
+      <UniqueIdentifier>{90b6edf6-b858-49fa-ba86-73797a558f37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\第二次实验">
+      <UniqueIdentifier>{9e72dc0b-5360-4405-a1cf-71420c8b0e24}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -36,32 +39,20 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="DDA1.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="第二次实验\几何变换.h">
+      <Filter>头文件\第二次实验</Filter>
     </ClInclude>
-    <ClInclude Include="画圆算法.h">
-      <Filter>头文件</Filter>
+    <ClInclude Include="第二次实验\Cohen-Suntherland.h">
+      <Filter>头文件\第二次实验</Filter>
     </ClInclude>
-    <ClInclude Include="第五章\边缘填充算法.h">
-      <Filter>头文件\第五章</Filter>
+    <ClInclude Include="第一次实验\DDA1.h">
+      <Filter>头文件\第一次实验</Filter>
     </ClInclude>
-    <ClInclude Include="第五章\DDA1.h">
-      <Filter>头文件\第五章</Filter>
+    <ClInclude Include="第一次实验\边缘填充算法.h">
+      <Filter>头文件\第一次实验</Filter>
     </ClInclude>
-    <ClInclude Include="第六章\几何变换.h">
-      <Filter>头文件\第六章</Filter>
-    </ClInclude>
-    <ClInclude Include="第六章\Cohen-Suntherland.h">
-      <Filter>头文件\第六章</Filter>
-    </ClInclude>
-    <ClInclude Include="第三次实验\图形移动.h">
-      <Filter>头文件\第三次实验</Filter>
-    </ClInclude>
-    <ClInclude Include="第三次实验\两点透视.h">
-      <Filter>头文件\第三次实验</Filter>
-    </ClInclude>
-    <ClInclude Include="第三次实验\斜二测.h">
-      <Filter>头文件\第三次实验</Filter>
+    <ClInclude Include="第一次实验\画圆算法.h">
+      <Filter>头文件\第一次实验</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -71,16 +62,25 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="第三次实验\一点透视.h">
+    <ClCompile Include="第三次实验\图形移动.cpp">
       <Filter>头文件\第三次实验</Filter>
     </ClCompile>
-    <ClCompile Include="Bzier.cpp">
+    <ClCompile Include="第三次实验\斜二测.cpp">
+      <Filter>头文件\第三次实验</Filter>
+    </ClCompile>
+    <ClCompile Include="第三次实验\两点透视.cpp">
+      <Filter>头文件\第三次实验</Filter>
+    </ClCompile>
+    <ClCompile Include="最后一次实验\图案填充.cpp">
+      <Filter>头文件\最后一次实验</Filter>
+    </ClCompile>
+    <ClCompile Include="第四次实验\Bzier.cpp">
       <Filter>头文件\第四次实验</Filter>
     </ClCompile>
-    <ClCompile Include="画家算法.cpp">
+    <ClCompile Include="第四次实验\Z_buffer.cpp">
       <Filter>头文件\第四次实验</Filter>
     </ClCompile>
-    <ClCompile Include="Z_buffer.cpp">
+    <ClCompile Include="第四次实验\画家算法.cpp">
       <Filter>头文件\第四次实验</Filter>
     </ClCompile>
   </ItemGroup>

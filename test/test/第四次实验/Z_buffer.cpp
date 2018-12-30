@@ -7,7 +7,7 @@
 #include<algorithm>
 using namespace std;
 
-#if 1
+#if 0
 typedef struct node {
 	int x;//±ß½çx
 	int y;//±ß½çy

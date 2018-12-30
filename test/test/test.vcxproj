@@ -88,6 +88,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>D:\eigen3</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,20 +146,15 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DDA1.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="画圆算法.h" />
-    <ClInclude Include="第三次实验\两点透视.h" />
-    <ClInclude Include="第三次实验\图形移动.h" />
-    <ClInclude Include="第三次实验\斜二测.h" />
-    <ClInclude Include="第五章\DDA1.h" />
-    <ClInclude Include="第五章\边缘填充算法.h" />
-    <ClInclude Include="第六章\Cohen-Suntherland.h" />
-    <ClInclude Include="第六章\几何变换.h" />
+    <ClInclude Include="第一次实验\DDA1.h" />
+    <ClInclude Include="第一次实验\画圆算法.h" />
+    <ClInclude Include="第一次实验\边缘填充算法.h" />
+    <ClInclude Include="第二次实验\Cohen-Suntherland.h" />
+    <ClInclude Include="第二次实验\几何变换.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Bzier.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -166,9 +162,13 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Z_buffer.cpp" />
-    <ClCompile Include="画家算法.cpp" />
-    <ClCompile Include="第三次实验\一点透视.h" />
+    <ClCompile Include="最后一次实验\图案填充.cpp" />
+    <ClCompile Include="第三次实验\两点透视.cpp" />
+    <ClCompile Include="第三次实验\图形移动.cpp" />
+    <ClCompile Include="第三次实验\斜二测.cpp" />
+    <ClCompile Include="第四次实验\Bzier.cpp" />
+    <ClCompile Include="第四次实验\Z_buffer.cpp" />
+    <ClCompile Include="第四次实验\画家算法.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
